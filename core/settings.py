@@ -32,6 +32,11 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # Application definition
@@ -132,34 +137,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 
-STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# LOGGING = {
-#      "version": 1,
-#      "disable_existing_loggers": False,
-#      "handlers": {
-#          "console": {
-#              "class": "logging.StreamHandler",
-#          },
-#      },
-#      "root": {
-#          "handlers": ["console"],
-#          "level": "DEBUG",  # Set the desired logging level
-#      },
-#      "loggers": {
-#          "django.db.backends": {
-#              "handlers": ["console"],
-#              "level": "DEBUG",  # Set the desired logging level
-#              "propagate": False,
-#          },
-#      },
-# }
 
 
 CELERY_TIMEZONE = "UTC"
@@ -174,3 +160,22 @@ CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
 VERIFY_TOKEN= env("VERIFY_TOKEN")
 VERIFY_URL=env("VERIFY_URL")
 VERIFY_CLIENT_ID=env("VERIFY_CLIENT_ID")
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
