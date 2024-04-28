@@ -76,3 +76,4 @@ whitenoise==6.6.0
 # Bypasses ALLOWED_HOSTS for the purposes of load balancers
 django-lb-health-check==1.0.1
 
+requests
