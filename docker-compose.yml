@@ -22,5 +22,5 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - easymeal-backend
+      - taxgpt-backend
       - celery-worker
