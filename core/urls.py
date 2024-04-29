@@ -34,6 +34,7 @@ schema_view = get_schema_view(
 
 api_urlpatterns = [
     path("", include("apps.chatbot.api.urls")),
+    path("", include("apps.user_app.api.urls")),
 
 ]
 

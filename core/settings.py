@@ -16,8 +16,9 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool,False)
 )
+DEBUG = env("DEBUG")
 
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
@@ -29,7 +30,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["*"] #it is a bad practise but just allowing * for now
 STORAGES = {
@@ -39,8 +39,14 @@ STORAGES = {
 }
 
 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
-
+CSRF_TRUSTED_ORIGINS = [
+     "http://localhost:3000",
+     "http://127.0.0.1:3000",
+     "http://*"
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -57,9 +63,11 @@ INSTALLED_APPS = [
     "corsheaders",
     "core",
     "apps.chatbot",
+    "apps.user_app"
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -103,6 +111,23 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME':'taxgpt',
+         'USER':'postgres',
+         'PASSWORD':env("DB_PASSWORD"),
+         'HOST':env("DB_HOST"),
+         'PORT':'5432'
+     }
+}
+if env("USE_LOCAL")=="True":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -122,6 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'user_app.AppUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -160,7 +186,8 @@ CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
 VERIFY_TOKEN= env("VERIFY_TOKEN")
 VERIFY_URL=env("VERIFY_URL")
 VERIFY_CLIENT_ID=env("VERIFY_CLIENT_ID")
-
+GROQ_API_KEY=env("GROQ_API_KEY")
+USE_CUSTOM_FUNCTION=env("USE_CUSTOM_FUNCTION")
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -179,3 +206,20 @@ LOGGING = {
         },
     },
 }
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]

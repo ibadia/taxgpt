@@ -4,9 +4,9 @@ from apps.chatbot.api.views import chatbot_api,pdf_upload_api
 
 urlpatterns = [
     path(
-        "products/",
+        "chatbot/",
         chatbot_api.ChatDetailAPI.as_view(),
-        name="chatbot_details"
+        name="chatbot"
     ),
     path(
         "pdfupload/",
