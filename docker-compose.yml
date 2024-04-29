@@ -15,7 +15,6 @@ services:
       - .:/app
     depends_on:
       - taxgpt-backend
-      - redis
   celery-beat:
     build: .
     command: celery -A core  beat -l info -S django
