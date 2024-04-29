@@ -31,11 +31,7 @@ pytest-cov==4.1.0
 # for code formatting
 black==22.8.0
 
-# mysql python support for Python
-mysqlclient
 
-# postgresql support for Python
-psycopg2-binary==2.9.7
 
 
 # for getting env
