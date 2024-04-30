@@ -84,3 +84,18 @@ CELERY_RESULT_BACKEND=redis://localhost:6379/1
    3. The context will be given to groq which will be the JSON that verify have generated.
    4. Whole user chat history will be saved in Chatbot table.
    5. If user dissapears for some time then re initiate the chat, the backend will get the previous chat records for the last 3 hours and chain it along with previous chats.
+
+
+
+## LINKS GIVEN:
+### Github Repository
+1. https://github.com/ibadia/taxgpt
+2. 2. https://github.com/ibadia/taxgpt-frontend
+
+### Access Links:
+1. https://nimble-taiyaki-cb3e5a.netlify.app/ (FOR FRONTEND APPLICATION ACCESS)
+2. https://d198bemxyz9el2.cloudfront.net/docs/ (CLOUD FRONT LINK  FOR ACCESSING SWAGGER DOCS) (FOR ACCESSING BACKEND APIS)
+3. http://ec2-54-227-117-90.compute-1.amazonaws.com:8000/docs/ (AWS EC2) link for accesing SWAGGER DOCS DIRECTLY WITHOUT cloudfront. 
+
+
+## Loom Video:
