@@ -95,7 +95,6 @@ CELERY_RESULT_BACKEND=redis://localhost:6379/1
 ### Access Links:
 1. https://nimble-taiyaki-cb3e5a.netlify.app/ (FOR FRONTEND APPLICATION ACCESS)
 2. https://d198bemxyz9el2.cloudfront.net/docs/ (CLOUD FRONT LINK  FOR ACCESSING SWAGGER DOCS) (FOR ACCESSING BACKEND APIS)
-3. http://ec2-54-227-117-90.compute-1.amazonaws.com:8000/docs/ (AWS EC2) link for accesing SWAGGER DOCS DIRECTLY WITHOUT cloudfront. 
 
 
 ## Loom Video:
