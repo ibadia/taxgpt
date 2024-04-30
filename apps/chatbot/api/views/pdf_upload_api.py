@@ -18,9 +18,7 @@ from rest_framework.generics import GenericAPIView
 class PDFUploadView(GenericAPIView):
     serializer_class=PDFDocumentSerializer
     parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.FileUploadParser)
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
-
+    
     @swagger_auto_schema(
         request_body=PDFDocumentSerializer,
         operation_description="Upload a PDF document",

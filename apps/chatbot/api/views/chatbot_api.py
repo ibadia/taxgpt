@@ -17,8 +17,6 @@ class ChatDetailAPI(APIView):
         response={200: ChatBotSerializerResponse}
     )
     def post(self, request):
-        if not request.user.is_authenticated:
-            return Response("Authentication credentials were not provided.", status=status.HTTP_403_FORBIDDEN)
         serializer = self.serializer_class(data=request.data, context = {'request':request})
         serializer.is_valid(raise_exception=True)
         document_id=serializer.validated_data["document_id"]
