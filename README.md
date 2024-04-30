@@ -98,3 +98,4 @@ CELERY_RESULT_BACKEND=redis://localhost:6379/1
 
 
 ## Loom Video:
+https://www.loom.com/share/53740a7b592c44478c30909118c6bf7d?sid=a590ba1d-45f6-4c1f-b58e-1504c86519cf
