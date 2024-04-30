@@ -29,7 +29,7 @@ class PDFUploadView(GenericAPIView):
 
         pdf_file_reader=serializer.validated_data["document"].read()
         pdf_file_name=serializer.validated_data["document"].name
-        pdf_document = Documents(document=pdf_file_reader, document_filename=pdf_file_name, user=request.user)
+        pdf_document = Documents(document=pdf_file_reader, document_filename=pdf_file_name)#, user=request.user)
         pdf_document.save()
 
         encoded_string = base64.b64encode(pdf_file_reader).decode('utf-8')

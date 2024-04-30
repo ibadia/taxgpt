@@ -27,8 +27,9 @@ class ChatBotSerializerRequest(serializers.Serializer):
         if value is not None:
             try:
                 document=Documents.objects.get(id=value)
-                if document.user!=self.context["request"].user:
-                    raise ValidationError("You are not authorized to access this document.")
+                #if document.user!=self.context["request"].user:
+                    
+                    #raise ValidationError("You are not authorized to access this document.")
                 return value
             except Documents.DoesNotExist:
                 raise ValidationError("Document does not exist.")
